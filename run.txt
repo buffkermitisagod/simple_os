@@ -1,0 +1,11 @@
+32bit:
+qemu-system-i386
+
+64bit:
+qemu-system-x86_64
+
+
+compile:
+gcc -c -g -Os -m32 -ffreestanding -Wall -Werror -I. -o vbr.o vbr.c
+ld -m elf_i386 -static -Tlinker.ld -nostdlib --nmagic -o vbr.elf vbr.o
+objcopy -O binary vbr.elf vbr.bin
